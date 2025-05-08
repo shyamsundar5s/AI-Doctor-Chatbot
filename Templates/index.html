@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Doctor Chatbot</title>
+    <script>
+        async function sendMessage() {
+            const userMessage = document.getElementById('userInput').value;
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            });
+            const data = await response.json();
+            document.getElementById('chatOutput').innerHTML += `<div><b>You:</b> ${userMessage}</div>`;
+            if (data.response) {
+                document.getElementById('chatOutput').innerHTML += `<div><b>AI Doctor:</b> ${data.response}</div>`;
+            } else {
+                document.getElementById('chatOutput').innerHTML += `<div><b>Error:</b> ${data.error}</div>`;
+            }
+            document.getElementById('userInput').value = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>AI Doctor Chatbot</h1>
+    <div id="chatOutput" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;"></div>
+    <input type="text" id="userInput" placeholder="Describe your symptoms..." style="width: 80%;">
+    <button onclick="sendMessage()">Send</button>
+</body>
+</html>
