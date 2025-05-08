@@ -1,1 +1,2 @@
 # AI-Doctor-Chatbot
+The **AI Doctor Chatbot** is a web-based application designed to serve as an initial symptom checker and provide health advice. It uses a Large Language Model (LLM), such as OpenAI's GPT, to interact with users, analyze their symptoms, and provide general health advice. The chatbot also includes user authentication, symptom history tracking, multilingual support, and an admin dashboard for enhanced functionality.
